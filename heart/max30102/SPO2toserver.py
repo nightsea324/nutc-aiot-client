@@ -5,6 +5,7 @@ from RPi import GPIO
 import time
 import requests
 import os
+from webcam import webcam
 
 m = max30102.MAX30102()
 
@@ -16,7 +17,7 @@ heart = [60]
 avgspo2 = [98]
 checkhr = False
 checksp = False
-url = "http://10.145.1.70:8080"
+url = "http://59.127.131.152:8080"
 
 GPIO.setmode(GPIO.BOARD)
 buttonPin = 37
@@ -28,8 +29,9 @@ while True:
         print("press")
         while True:
             localtime = time.localtime()
-            filename = time.strftime("%Y%m%d%I%M%S.txt",localtime)            
+            filename = time.strftime("hrb_%Y%m%d%I%M%S.txt",localtime)            
             red, ir = m.read_sequential()
+            webcam.main()
             f = open(filename, 'w+')
             hr,hrb,sp,spb = hrcalc.calc_hr_and_spo2(ir, red)
           
@@ -72,11 +74,12 @@ while True:
                 #print('SPO2 avg : ',avgsp)
             if checksp == True and checkhr == True:
                 print('情緒過於激動')
+                f.write('情緒過於激動')
             f.close()
             
 
             f=open(filename,'rb')
-            files = {'hrate':f}
+            files = {'file':f}
             r = requests.post(url=url,files=files)
             
             print(r.text)

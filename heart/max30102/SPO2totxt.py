@@ -20,7 +20,7 @@ checksp = False
 
 #with open("SPO2.txt","a") as f:
 
-url = "http://10.145.1.70:8080"
+url = "http://59.127.131.152:8080"
 
 GPIO.setmode(GPIO.BOARD)
 buttonPin = 15
@@ -33,8 +33,7 @@ while True:
     while True:
         
         localtime = time.localtime()
-        filename = time.strftime("%Y%m%d%I%M%S.txt",localtime)
-        
+        filename = time.strftime("hrb_%Y%m%d%I%M%S.txt",localtime)
             red, ir = m.read_sequential()
             f = open(filename, 'w+')
             print("偵測不到資料")
@@ -91,7 +90,7 @@ while True:
         f.close()
             
         f=open(filename,'rb')
-        files = {'hrate':f}
+        files = {'file':f}
         r = requests.post(url=url,files=files)
         print(r.text)
         os.remove(filename)

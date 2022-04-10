@@ -17,7 +17,7 @@ checkhr = False
 checksp = False
 
 GPIO.setmode(GPIO.BOARD)
-buttonPin = 15
+buttonPin = 37
 GPIO.setup(buttonPin,GPIO.IN)
 prev_input = 1
 while True:
