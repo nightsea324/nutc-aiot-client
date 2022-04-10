@@ -1,0 +1,26 @@
+hr detected: False
+sp detected:False
+hr detected: True
+sp detected:True
+Heart Rate too high ->60
+250
+250
+SPO2 too low ->250
+71
+71
+hr detected: True
+sp detected:True
+Heart Rate too high ->71
+187
+187
+SPO2 too low ->187
+65
+65
+hr detected:False
+sp detected:False
+hr detected:True
+sp detected:True
+31
+SPO2 too low ->31
+88
+88
